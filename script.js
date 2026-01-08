@@ -14,14 +14,14 @@ const res = [
 
 let input = [];
 
-function embedding() {
-    if (chat.value === "こんにちは") {
+function embedding(val) {
+    if (val === "こんにちは") {
         input = [1, 0, 0]
         teacher = [1, 0, 0];
-    } else if (chat.value === "元気") {
+    } else if (val === "元気") {
         input = [0, 1, 0];
         teacher = [0, 1, 0];
-    } else if (chat.value === "さようなら") {
+    } else if (val === "さようなら") {
         input = [0, 0, 1];
         teacher = [0, 0, 1];
     } else {
@@ -77,7 +77,7 @@ function error() {
 }
 
 //学習率
-let lr = 0.5;
+let lr = 0.3;
 
 //重み・バイアスの更新
 function update() {
@@ -110,8 +110,7 @@ function epoch() {
     //あらかじめ3パターン学習させる
     const vals = ["こんにちは", "元気", "さようなら"];
     for (let val of vals) {
-        chat.value = val;
-        embedding();
+        embedding(val);
         output();
         error();
         update();
@@ -127,7 +126,8 @@ function epoch() {
 
     if (count === 1000) {
         //学習済みモデルにユーザー入力を渡す
-        embedding();
+        const userInput = chat.value;
+        embedding(userInput);
         output();
 
         let maxValue = Math.max(...outputArray);
