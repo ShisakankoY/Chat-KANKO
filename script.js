@@ -82,13 +82,13 @@ let lr = 0.5;
 //重み・バイアスの更新
 function update() {
     w1 = w1 + lr * (teacher[0] - outputArray[0]) * outputArray[0] * (1 - outputArray[0]) * input[0];
-    w2 = w2 + lr * (teacher[1] - outputArray[1]) * outputArray[1] * (1 - outputArray[1]) * input[1];
-    w3 = w3 + lr * (teacher[2] - outputArray[2]) * outputArray[2] * (1 - outputArray[2]) * input[2];
-    w4 = w4 + lr * (teacher[0] - outputArray[0]) * outputArray[0] * (1 - outputArray[0]) * input[0];
+    w2 = w2 + lr * (teacher[0] - outputArray[0]) * outputArray[0] * (1 - outputArray[0]) * input[1];
+    w3 = w3 + lr * (teacher[0] - outputArray[0]) * outputArray[0] * (1 - outputArray[0]) * input[2];
+    w4 = w4 + lr * (teacher[1] - outputArray[1]) * outputArray[1] * (1 - outputArray[1]) * input[0];
     w5 = w5 + lr * (teacher[1] - outputArray[1]) * outputArray[1] * (1 - outputArray[1]) * input[1];
-    w6 = w6 + lr * (teacher[2] - outputArray[2]) * outputArray[2] * (1 - outputArray[2]) * input[2];
-    w7 = w7 + lr * (teacher[0] - outputArray[0]) * outputArray[0] * (1 - outputArray[0]) * input[0];
-    w8 = w8 + lr * (teacher[1] - outputArray[1]) * outputArray[1] * (1 - outputArray[1]) * input[1];
+    w6 = w6 + lr * (teacher[1] - outputArray[1]) * outputArray[1] * (1 - outputArray[1]) * input[2];
+    w7 = w7 + lr * (teacher[2] - outputArray[2]) * outputArray[2] * (1 - outputArray[2]) * input[0];
+    w8 = w8 + lr * (teacher[2] - outputArray[2]) * outputArray[2] * (1 - outputArray[2]) * input[1];
     w9 = w9 + lr * (teacher[2] - outputArray[2]) * outputArray[2] * (1 - outputArray[2]) * input[2];
     bias1 = bias1 + lr * (teacher[0] - outputArray[0]) * outputArray[0] * (1 - outputArray[0]);
     bias2 = bias2 + lr * (teacher[1] - outputArray[1]) * outputArray[1] * (1 - outputArray[1]);
@@ -110,7 +110,7 @@ function epoch() {
     //あらかじめ3パターン学習させる
     const vals = ["こんにちは", "元気", "さようなら"];
     for (let val of vals) {
-        chat.input = val;
+        chat.value = val;
         embedding();
         output();
         error();
